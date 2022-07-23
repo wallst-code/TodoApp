@@ -1,0 +1,90 @@
+CREATE PROCEDURE [dbo].[spTodos_GetAllAssigned]
+	@AssignedTo int
+as
+begin
+	select Id, Task, AssignedTo, IsComplete 
+	from dbo.Todos
+	where AssignedTo = @AssignedTo;
+end
+
+CREATE PROCEDURE [dbo].[spTodos_GetOneAssigned]
+	@AssignedTo int,
+	@TodoId int
+as
+begin
+	select Id, Task, AssignedTo, IsComplete 
+	from dbo.Todos
+	where AssignedTo = @AssignedTo 
+		and Id = @TodoId;
+end
+
+CREATE PROCEDURE [dbo].[spTodos_Create]
+	@Task nvarchar(50),
+	@AssignedTo int
+as
+begin
+	insert into dbo.Todos (task, AssignedTo)
+	values (@Task, @AssignedTo);
+
+	select Id, Task, AssignedTo, IsComplete
+	from dbo.Todos
+	where Id = SCOPE_IDENTITY(); 
+end
+
+CREATE PROCEDURE [dbo].[spTodos_UpdateTask]
+	@Task nvarchar(50),
+	@AssignedTo int,
+	@TodoId int
+as
+begin
+	update dbo.Todos
+	set Task = @Task
+	where Id = @TodoId 
+		and AssignedTo = @AssignedTo;
+end
+
+
+CREATE PROCEDURE [dbo].[spTodos_CompleteTodo]
+	@AssignedTo int,
+	@TodoId int
+as
+begin
+	update dbo.Todos
+	set IsComplete = 1
+	where Id = @TodoId 
+		and AssignedTo = @AssignedTo;
+end
+
+
+CREATE PROCEDURE [dbo].[spTodos_Delete]
+	@AssignedTo int,
+	@TodoId int
+as
+begin
+	delete from dbo.Todos
+	where Id = @TodoId 
+		and AssignedTo = @AssignedTo;
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

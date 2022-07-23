@@ -1,0 +1,12 @@
+C:\Users\User\source\repos\ToDoApp\ToDoLibrary\bin\Debug\net6.0\ToDoLibrary.deps.json
+C:\Users\User\source\repos\ToDoApp\ToDoLibrary\bin\Debug\net6.0\ToDoLibrary.dll
+C:\Users\User\source\repos\ToDoApp\ToDoLibrary\bin\Debug\net6.0\ToDoLibrary.pdb
+C:\Users\User\source\repos\ToDoApp\ToDoLibrary\obj\Debug\net6.0\ToDoLibrary.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\ToDoApp\ToDoLibrary\obj\Debug\net6.0\ToDoLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\ToDoApp\ToDoLibrary\obj\Debug\net6.0\ToDoLibrary.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\ToDoApp\ToDoLibrary\obj\Debug\net6.0\ToDoLibrary.AssemblyInfo.cs
+C:\Users\User\source\repos\ToDoApp\ToDoLibrary\obj\Debug\net6.0\ToDoLibrary.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ToDoApp\ToDoLibrary\obj\Debug\net6.0\ToDoLibrary.dll
+C:\Users\User\source\repos\ToDoApp\ToDoLibrary\obj\Debug\net6.0\refint\ToDoLibrary.dll
+C:\Users\User\source\repos\ToDoApp\ToDoLibrary\obj\Debug\net6.0\ToDoLibrary.pdb
+C:\Users\User\source\repos\ToDoApp\ToDoLibrary\obj\Debug\net6.0\ref\ToDoLibrary.dll
