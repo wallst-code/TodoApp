@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using ToDoLibrary.DataAccess;
 using ToDoLibrary.Models;
 
@@ -11,11 +12,13 @@ namespace ToDoAPI.Controllers
     public class TodosController : ControllerBase
     {
         private readonly ITodoData _data;
-       
+        private readonly ILogger<TodosController> _logger;
+
         // Constructor
-        public TodosController(ITodoData data)
+        public TodosController(ITodoData data, ILogger<TodosController> logger)
         {
-            _data = data;            
+            _data = data;
+            _logger = logger;
         }
 
         private int GetUserId()
@@ -28,48 +31,115 @@ namespace ToDoAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<TodoModel>>> Get()
         {
-            var output = await _data.GetAllAssigned(GetUserId());
+            _logger.LogInformation("GET: api/Todos");
 
-            return Ok(output);
+            try
+            {
+                var output = await _data.GetAllAssigned(GetUserId());
+
+                return Ok(output);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "The GET call to api/Todos failed.");
+                return BadRequest();
+            }
         }
 
         // GET api/Todos/5
-        [HttpGet("{id}")]
+        [HttpGet("{todoId}")]
         public async Task<ActionResult<TodoModel>> Get(int todoId)
         {
-            var output = await _data.GetAllAssigned(GetUserId());
+            _logger.LogInformation("GET: api/Todos/{TodoId}", todoId);
 
-            return Ok(output);
+            try
+            {
+                var output = await _data.GetOneAssigned(GetUserId(), todoId);
+
+                return Ok(output);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "The GET call to {ApiPath} failed. The Id was {TodoId}.", $"api/Todos/{todoId}", todoId);
+                return BadRequest();
+            }
         }
 
         // POST api/Todos
         [HttpPost]
         public async Task<ActionResult<TodoModel>> Post([FromBody] string task)
         {
-            var output = await _data.Create(GetUserId(), task);
+            _logger.LogInformation("POST: api/Todos (Task: {Task})", task);
 
-            return Ok(output);
+            try
+            {
+                var output = await _data.Create(GetUserId(), task);
+
+                return Ok(output);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "The POST call to api/Todos failed. The task value was {Task}", task);
+                return BadRequest();
+            }
         }
 
-        [HttpPut]
+        [HttpPut("{todoId}")]
         // PUT api/Todos/5
-        public IActionResult Put(int id, [FromBody] string value)
+        public async Task<ActionResult> Put(int todoId, [FromBody] string task)
         {
-            throw new NotImplementedException();
+            _logger.LogInformation("PUT: api/Todos/{TodoId} (Task: {Task})", todoId, task);
+
+            try
+            {
+                await _data.UpdateTask(GetUserId(), todoId, task);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                _logger.LogError(ex, "The PUT call to api/Todos/{TodoId} failed (Task: {Task}).", todoId, task);
+                return BadRequest();
+            }
         }
 
         // PUT api/Todos/5/complete
-        [HttpPut("{id}/complete")]
-        public IActionResult Complete(int id)
+        [HttpPut("{todoId}/complete")]
+        public async Task<IActionResult> Complete(int todoId)
         {
-            throw new NotImplementedException();
+            _logger.LogInformation("PUT: api/Todos/{TodoId}/complete", todoId);
+
+            try
+            {
+                await _data.CompleteTodo(GetUserId(), todoId);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "The PUT call to api/Todos/{TodoId}/complete failed", todoId);
+                return BadRequest();
+            }
         }
 
         // DELETE api/Todos/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("{todoId}")]
+        public async Task<IActionResult> Delete(int todoId)
         {
-            throw new NotImplementedException();
+            _logger.LogInformation("Delete: api/Todos/{TodoId}", todoId);
+
+            try
+            {
+                await _data.Delete(GetUserId(), todoId);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "The Delete call to api/Todos/{TodoId} failed", todoId);
+                return BadRequest();
+            }
         }
     }
 }

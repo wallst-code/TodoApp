@@ -40,8 +40,8 @@ public static class DependencyInjectionExtensions
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = builder.Configuration.GetValue<string>("Authentication: Issuer"),
-                    ValidAudience = builder.Configuration.GetValue<string>("Authentication: Audience"),
+                    ValidIssuer = builder.Configuration.GetValue<string>("Authentication:Issuer"),
+                    ValidAudience = builder.Configuration.GetValue<string>("Authentication:Audience"),
                     IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.ASCII.GetBytes(
                             builder.Configuration.GetValue<string>("Authentication:SecretKey")))
