@@ -5,9 +5,12 @@
 
 <PageTitle>Index</PageTitle>
 
-@if (isLoggedIn)
+
+
+@if (isLoggedIn == true)
 {
-    <h1>You Are Logged In</h1>
+    <div class="h1 text-success">You Are Logged In!</div>
+    @*<h1>You Are Logged In!</h1>*@
     <button class="btn btn-danger" @onclick="LogOut">Log Out</button>
 }
 else
@@ -24,27 +27,28 @@ else
 
 @code {
     private AuthenticationModel login = new();
-    private bool isLoggedIn = false;
-
+    private bool isLoggedIn = false;    
+   
     protected override void OnInitialized()
     {
         isLoggedIn = !string.IsNullOrWhiteSpace(tokenInfo.Token);
-        // if the Token is null or white space then they are not logged in, but if not, then they are logged in. 
+        // if the Token is null or white space then they are not logged in, but if not, then they are logged in.
     }
 
     private async void HandleValidSubmit()
     {
         var client = factory.CreateClient("api");
 
-        var info = await client.PostAsJsonAsync<AuthenticationModel>("Authentication/token", login);
+        var info = await client.PostAsJsonAsync<AuthenticationModel>("Authentication/token",login);
+        //var info = await client.PostAsJsonAsync<AuthenticationModel>("https://localhost:7039/api/Authentication/token",login);
         tokenInfo.Token = await info.Content.ReadAsStringAsync();
-        isLoggedIn = true;
-        await InvokeAsync(StateHasChanged); // this tells Blazor to redraw the page, because it cannot see async changes on its own. 
-    }
+        isLoggedIn = true;        
+        await InvokeAsync(StateHasChanged); // this tells Blazor to redraw the page, because it cannot see async changes on its own.
+    }   
 
     private void LogOut()
     {
-        tokenInfo.Token = ""; // this overwrites the token and it is no longer there. 
+        tokenInfo.Token = ""; // this overwrites the token and it is no longer there.
         isLoggedIn = false;
     }
 }

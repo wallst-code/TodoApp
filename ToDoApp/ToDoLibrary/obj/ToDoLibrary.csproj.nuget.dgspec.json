@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\PublicRepos\\ToDoApp\\ToDoLibrary\\ToDoLibrary.csproj": {}
+    "C:\\Users\\User\\source\\repos\\ToDoApp\\ToDoLibrary\\ToDoLibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\PublicRepos\\ToDoApp\\ToDoLibrary\\ToDoLibrary.csproj": {
+    "C:\\Users\\User\\source\\repos\\ToDoApp\\ToDoLibrary\\ToDoLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\PublicRepos\\ToDoApp\\ToDoLibrary\\ToDoLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\ToDoApp\\ToDoLibrary\\ToDoLibrary.csproj",
         "projectName": "ToDoLibrary",
-        "projectPath": "C:\\Users\\User\\source\\PublicRepos\\ToDoApp\\ToDoLibrary\\ToDoLibrary.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\ToDoApp\\ToDoLibrary\\ToDoLibrary.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\PublicRepos\\ToDoApp\\ToDoLibrary\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\ToDoApp\\ToDoLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
